@@ -3,17 +3,28 @@ function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3)
     switch (randomNum) {
         case 0:
-            return 'rock'
+            return 'Rock'
         case 1:
-            return 'paper'
+            return 'Paper'
         case 2:
-            return 'scissor'
+            return 'Scissor'
     }
 }
 
 function roundResult(playerSelection, computerSelection) {
     // Make playerSelection case-insensitive
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+    
     // Return string that declares the winner or tie
+    if (playerSelection === computerSelection) {
+        return 'Tie!'
+    } else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || 
+                playerSelection === 'Paper' && computerSelection === 'Rock' || 
+                playerSelection === 'Scissor' && computerSelection === 'Paper') {
+        return `You win! ${playerSelection} beats ${computerSelection}`
+    } else {
+        return `You lose! ${computerSelection} beats ${playerSelection}`
+    }
 }
 
 function playRound() {
