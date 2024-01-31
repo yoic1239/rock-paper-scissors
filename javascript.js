@@ -1,5 +1,14 @@
 function getComputerChoice() {
     // Return either rock, paper, or scissor randomly
+    let randomNum = Math.floor(Math.random() * 3)
+    switch (randomNum) {
+        case 0:
+            return 'rock'
+        case 1:
+            return 'paper'
+        case 2:
+            return 'scissor'
+    }
 }
 
 function roundResult(playerSelection, computerSelection) {
