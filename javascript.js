@@ -1,7 +1,6 @@
 function getComputerChoice() {
     // Return either rock, paper, or scissor randomly
-    let randomNum = Math.floor(Math.random() * 3)
-    switch (randomNum) {
+    switch (Math.floor(Math.random() * 3)) {
         case 0:
             return 'Rock';
         case 1:
@@ -17,7 +16,7 @@ function roundResult(playerSelection, computerSelection) {
     
     // Return string that declares the winner or tie
     if (playerSelection === computerSelection) {
-        return 'Tie!';
+        return `Tie! You both play ${playerSelection}`;
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || 
                 playerSelection === 'Paper' && computerSelection === 'Rock' || 
                 playerSelection === 'Scissor' && computerSelection === 'Paper') {
@@ -29,7 +28,7 @@ function roundResult(playerSelection, computerSelection) {
 
 function playRound() {
     // GET player's selection
-    const playerSelection = prompt('What will you play? (Rock, Paper, or Scissors)');
+    const playerSelection = prompt('What will you play? (Rock, Paper, or Scissor)');
 
     // GET computer's selection
     const computerSelection = getComputerChoice();
@@ -39,7 +38,7 @@ function playRound() {
     console.log(result);
 
     // Return player's result
-    if (result === 'Tie!') {
+    if (result.substring(0, 4) === 'Tie!') {
         return 'tie';
     } else if (result.substring(0, 8) === 'You win!') {
         return 'win';
@@ -49,10 +48,36 @@ function playRound() {
 }
 
 function playGame() {
-    // Initialize player's and computer's score as 0
+    // Initialize player's score as 0
+    let score = 0;
+
     // CALL playRound 5 times to play a five round game
-    // ADD 1 point to the winnner of each round
-    // DISPLAY the results of each round
+    for (let i = 0; i < 5; i++) {
+        // DISPLAY the results of each round
+        const result = playRound();
+        
+        // ADD 1 point if player wins that round
+        // MINUS 1 point if lose
+        switch (result) {
+            case 'tie':
+                break;
+            case 'win':
+                score++;
+                break;
+            case 'lose':
+                score--;
+                break;
+        }
+    }
+
     // DISPLAY winners at the end
+    if (score > 0) {
+        console.log('Final result: You win!')
+    } else if (score < 0) {
+        console.log('Final result: You lose!')
+    } else {
+        console.log('Final result: Tie!')
+    }
 }
 
+playGame();
