@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button {
+    border: none;
+    background-color: #FFFFFF00;
+}
+
+button img {
+    width: 30vw;
+}
