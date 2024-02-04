@@ -11,6 +11,8 @@ function getComputerChoice() {
 }
 
 function roundResult(playerSelection, computerSelection) {
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+    
     if (playerSelection === computerSelection) {
         return `Tie! You both play ${playerSelection}`;
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || 
@@ -28,7 +30,6 @@ function playRound(playerSelection) {
 
     // CALL roundResult to display the result
     const result = roundResult(playerSelection, computerSelection);
-    const resultDiv = document.querySelector('#result');
     resultDiv.textContent = result;
 
     // Return player's result
@@ -49,13 +50,15 @@ function addScore(result) {
     }
 }
 
-const btns = document.querySelectorAll('button');
+const btns = document.querySelectorAll('.container button');
 
 let playerScore = 0;
 let comScore = 0;
 
 const playerScoreUI = document.querySelector('#playerScore');
 const comScoreUI = document.querySelector('#comScore');
+const resultDiv = document.querySelector('#result');
+const winner = document.querySelector('#winner');
 
 btns.forEach((button) => {
     button.addEventListener('click', function() {
@@ -63,5 +66,21 @@ btns.forEach((button) => {
         addScore(result);
         playerScoreUI.textContent = playerScore;
         comScoreUI.textContent = comScore;
+
+        if (playerScore === 5) {
+            winner.textContent = 'You win!';
+        } else if (comScore === 5) {
+            winner.textContent = 'Computer win!';
+        }
     });
 });
+
+const restartBtn = document.querySelector('.restart');
+restartBtn.addEventListener('click', function() {
+    playerScore = 0;
+    comScore = 0;
+    playerScoreUI.textContent = playerScore;
+    comScoreUI.textContent = comScore;
+    resultDiv.textContent = '';
+    winner.textContent = '';
+})

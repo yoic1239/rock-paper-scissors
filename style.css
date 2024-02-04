@@ -8,7 +8,7 @@ h1 {
     align-items: center;
 }
 
-button {
+.container button {
     border: none;
     background-color: #FFFFFF00;
 }
@@ -28,4 +28,20 @@ button img {
     text-align: center;
     margin: 1.5rem auto;
     font-size: 24px;
+}
+
+#winner {
+    text-align: center;
+    font-size: 32px;
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.restart {
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: blue;
+    color: white;
+    border: 1px solid rgb(14, 14, 66);
+    padding: 0.5rem 1rem;
 }
