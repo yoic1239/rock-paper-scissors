@@ -12,7 +12,7 @@ function getComputerChoice() {
 
 function roundResult(playerSelection, computerSelection) {
     playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-    
+
     if (playerSelection === computerSelection) {
         return `Tie! You both play ${playerSelection}`;
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || 
@@ -68,9 +68,9 @@ btns.forEach((button) => {
         comScoreUI.textContent = comScore;
 
         if (playerScore === 5) {
-            winner.textContent = 'You win!';
+            winner.textContent = 'You are the final winner!';
         } else if (comScore === 5) {
-            winner.textContent = 'Computer win!';
+            winner.textContent = 'Computer is the final winner!';
         }
     });
 });
