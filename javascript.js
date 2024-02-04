@@ -26,16 +26,14 @@ function roundResult(playerSelection, computerSelection) {
     }
 }
 
-function playRound() {
-    // GET player's selection
-    const playerSelection = prompt('What will you play? (Rock, Paper, or Scissor)');
-
+function playRound(playerSelection) {
     // GET computer's selection
     const computerSelection = getComputerChoice();
 
     // CALL roundResult to display the result
     const result = roundResult(playerSelection, computerSelection);
-    console.log(result);
+    const resultDiv = document.querySelector('#result');
+    resultDiv.textContent = result;
 
     // Return player's result
     if (result.substring(0, 4) === 'Tie!') {
@@ -49,26 +47,8 @@ function playRound() {
 
 function playGame() {
     // Initialize player's score as 0
-    let score = 0;
-
-    // CALL playRound 5 times to play a five round game
-    for (let i = 0; i < 5; i++) {
-        // DISPLAY the results of each round
-        const result = playRound();
-        
-        // ADD 1 point if player wins that round
-        // MINUS 1 point if lose
-        switch (result) {
-            case 'tie':
-                break;
-            case 'win':
-                score++;
-                break;
-            case 'lose':
-                score--;
-                break;
-        }
-    }
+    let playerScore = 0;
+    let comScore = 0;
 
     // DISPLAY winners at the end
     if (score > 0) {
@@ -80,4 +60,10 @@ function playGame() {
     }
 }
 
-playGame();
+const btns = document.querySelectorAll('button');
+
+btns.forEach((button) => {
+    button.addEventListener('click', function() {
+        playRound(button.id)
+    });
+});
