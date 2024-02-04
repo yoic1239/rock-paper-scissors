@@ -11,10 +11,6 @@ function getComputerChoice() {
 }
 
 function roundResult(playerSelection, computerSelection) {
-    // Make playerSelection case-insensitive
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-    
-    // Return string that declares the winner or tie
     if (playerSelection === computerSelection) {
         return `Tie! You both play ${playerSelection}`;
     } else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || 
@@ -45,25 +41,27 @@ function playRound(playerSelection) {
     }
 }
 
-function playGame() {
-    // Initialize player's score as 0
-    let playerScore = 0;
-    let comScore = 0;
-
-    // DISPLAY winners at the end
-    if (score > 0) {
-        console.log('Final result: You win!')
-    } else if (score < 0) {
-        console.log('Final result: You lose!')
-    } else {
-        console.log('Final result: Tie!')
+function addScore(result) {
+    if (result === 'win') {
+        playerScore++;
+    } else if (result === 'lose') {
+        comScore++;
     }
 }
 
 const btns = document.querySelectorAll('button');
 
+let playerScore = 0;
+let comScore = 0;
+
+const playerScoreUI = document.querySelector('#playerScore');
+const comScoreUI = document.querySelector('#comScore');
+
 btns.forEach((button) => {
     button.addEventListener('click', function() {
-        playRound(button.id)
+        let result = playRound(button.id);
+        addScore(result);
+        playerScoreUI.textContent = playerScore;
+        comScoreUI.textContent = comScore;
     });
 });

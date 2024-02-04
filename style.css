@@ -16,3 +16,16 @@ button {
 button img {
     width: 30vw;
 }
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem auto;
+    font-size: 32px;
+}
+
+#result {
+    text-align: center;
+    margin: 1.5rem auto;
+    font-size: 24px;
+}
